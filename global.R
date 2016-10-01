@@ -1,5 +1,5 @@
 # LangViz
-# Anupam Panwar
+# Anupam Panwar check
 # Date: September 29, 2016
 
 # global.R
