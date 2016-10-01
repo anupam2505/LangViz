@@ -44,6 +44,9 @@ dashboardPage(skin = "green",
                   tabItem(tabName = "dashboard",
                           fluidPage(
                             title = "Dashboard",
+                            tags$head(
+                              tags$script(src = 'http://d3js.org/d3.v3.min.js')
+                            ),
                             fluidRow(
                               column(width = 12,
                                      valueBoxOutput("usViBox", width = 3),
@@ -98,12 +101,13 @@ dashboardPage(skin = "green",
                             fluidRow(
                               column(width = 6,
                                      box(
-                                       title = "Top 10 users",
+                                       title = "Graphical Represention of top related word with Each Language",
                                        status = "primary",
                                        width = 12,
                                        solidHeader = FALSE,
                                        collapsible = TRUE,
-                                       showOutput("top10StatesTS", "nvd3")
+                                       htmlOutput('networkPlot')
+                                       #showOutput("top10StatesTS", "nvd3")
                                      ) #End of Box
                               ),# end of column
                               column(width = 6,

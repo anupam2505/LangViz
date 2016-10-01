@@ -2,6 +2,6 @@ name: LangViz
 account: languageanalysis
 server: shinyapps.io
 appId: 128658
-bundleId: 572651
+bundleId: 572685
 url: https://languageanalysis.shinyapps.io/LangViz/
-when: 1475202713.03643
+when: 1475204467.55348

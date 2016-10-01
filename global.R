@@ -24,6 +24,9 @@ library(reshape)
 library(shinydashboard)
 library(TTR)
 library(xlsx)
+library(d3Network)
+library(RCurl)
+library(shiny)
 
 
 ################################################################################

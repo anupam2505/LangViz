@@ -109,6 +109,28 @@ shinyServer(function(input, output, session) {
     return(p)
   })
   
+  output$networkPlot <- renderPrint({
+    links <- tfidf
+    
+    nodes = data.frame("name" = unique(links[,1]))
+    
+    nodes = rbind(nodes, data.frame("name" = links[,2]))
+    links$source.index = match(links$language, nodes$name)-1
+    
+    links$target.index = match(links$keyphrase, nodes$name)-1
+    
+    links$group = links$source.index
+    
+    
+    d3ForceNetwork(Links = links, Nodes = nodes,
+                        Source = "source.index", Target = "target.index",
+                        width = 680, height = 400,
+                        NodeID = "name", Value = 'tfidf', zoom = TRUE, parentElement = '#networkPlot',opacity = 0.9)
+    
+  })
+  
+  
+  
   # Render Top 10 States by Home Value Growth TimeSeries
   output$top10StatesTS <- renderChart({
     #Get Current Data
