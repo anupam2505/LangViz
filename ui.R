@@ -10,31 +10,43 @@ dashboardPage(skin = "green",
               dashboardSidebar(
                 sidebarMenu(id = "sbm",
                             menuItem("Dashboard", tabName = "dashboard", icon = icon("dashboard")),
-                            menuItem("Explorer", tabName = "explorer", icon = icon("search")),
-                            conditionalPanel(
-                              condition = "input.sbm == 'valueAnalysis' || input.sbm == 'trainModels' || input.sbm == 'compareModels' || input.sbm == 'forecast'",
-                              uiOutput("stateUi"),
-                              uiOutput("countyUi"),
-                              uiOutput("cityUi"),
-                              uiOutput("zipUi")
-                            ),
-                            menuItem("Value Analyzer", tabName = "valueAnalysis", icon = icon("area-chart")),
-                            menuItem("Visualization", tabName = "forecast", icon = icon("bar-chart")),
-                            menuItem("Help", tabName = "help", icon = icon("question-circle"),
-                                     menuSubItem("About shinyHome", icon = icon("user"),tabName = "helpAbout"),
-                                     menuSubItem("Welcome", icon = icon("coffee"),tabName = "helpWelcome"),
-                                     menuSubItem("Dashboard", icon = icon("dashboard"),tabName = "helpDashboard"),
-                                     menuItem("Market Explorer", icon = icon("search"),
-                                              menuSubItem("Build a Query", icon = icon("search"), tabName = "helpBuildQuery"),
-                                              menuSubItem("Market Report", icon = icon("bar-chart"), tabName = "helpMarketReport")),
-                                     menuItem("Value Analyzer", icon = icon("area-chart"),
-                                              menuSubItem("Non-Seasonal Series", icon = icon("line-chart"), tabName = "helpNonSeasonal"),
-                                              menuSubItem("Seasonal Series", icon = icon("bar-chart"), tabName = "helpSeasonal")),
-                                     menuItem("Forecast Modeler", icon = icon("bar-chart"),
-                                              menuSubItem("Set Parameters", icon = icon("caret-square-o-right"), tabName = "helpSetParameters"),
-                                              menuSubItem("Analyze Models", icon = icon("gears"), tabName = "helpAnalyzeModels"),
-                                              menuSubItem("Compare Models", icon = icon("check-circle"), tabName = "helpCompareModels")),
-                                     menuSubItem("Market Forecaster", icon = icon("line-chart"),tabName = "helpMarketForecaster"))
+                            # menuItem("Explorer", tabName = "explorer", icon = icon("search")),
+                            # conditionalPanel(
+                            #   condition = "input.sbm == 'valueAnalysis' || input.sbm == 'trainModels' || input.sbm == 'compareModels' || input.sbm == 'forecast'",
+                            #   uiOutput("stateUi"),
+                            #   uiOutput("countyUi"),
+                            #   uiOutput("cityUi"),
+                            #   uiOutput("zipUi")
+                            # ),
+                            # menuItem("Value Analyzer", tabName = "valueAnalysis", icon = icon("area-chart")),
+                            # menuItem("Visualization", tabName = "forecast", icon = icon("bar-chart")),
+                            menuItem("Languages", tabName = "Languages", icon = icon("question-circle"),
+                                     menuSubItem("Java", icon = icon("user"),tabName = "java"),
+                                     menuSubItem("MySQL", icon = icon("coffee"),tabName = "mysql"),
+                                     menuSubItem("C", icon = icon("coffee"),tabName = "c"),
+                                     menuSubItem("C++", icon = icon("coffee"),tabName = "c++"),
+                                     menuSubItem("Python", icon = icon("coffee"),tabName = "python"),
+                                     menuSubItem("SQL", icon = icon("coffee"),tabName = "sql"),
+                                     menuSubItem("Javascript", icon = icon("coffee"),tabName = "javascript"),
+                                     menuSubItem("HTML", icon = icon("coffee"),tabName = "html"),
+                                     menuSubItem("Matlab", icon = icon("coffee"),tabName = "matlab")
+                                     ),
+                            menuItem("Comparitive Analyzer", tabName = "Comparitive", icon = icon("question-circle"),
+                                     menuSubItem("Campare All", icon = icon("user"),tabName = "compareall"),
+                                     menuSubItem("Caompare Two", icon = icon("coffee"),tabName = "comparetwo")
+                                     # menuSubItem("Dashboard", icon = icon("dashboard"),tabName = "helpDashboard"),
+                                     # menuItem("Market Explorer", icon = icon("search"),
+                                     #          menuSubItem("Build a Query", icon = icon("search"), tabName = "helpBuildQuery"),
+                                     #          menuSubItem("Market Report", icon = icon("bar-chart"), tabName = "helpMarketReport")),
+                                     # menuItem("Value Analyzer", icon = icon("area-chart"),
+                                     #          menuSubItem("Non-Seasonal Series", icon = icon("line-chart"), tabName = "helpNonSeasonal"),
+                                     #          menuSubItem("Seasonal Series", icon = icon("bar-chart"), tabName = "helpSeasonal")),
+                                     # menuItem("Forecast Modeler", icon = icon("bar-chart"),
+                                     #          menuSubItem("Set Parameters", icon = icon("caret-square-o-right"), tabName = "helpSetParameters"),
+                                     #          menuSubItem("Analyze Models", icon = icon("gears"), tabName = "helpAnalyzeModels"),
+                                     #          menuSubItem("Compare Models", icon = icon("check-circle"), tabName = "helpCompareModels")),
+                                     # menuSubItem("Market Forecaster", icon = icon("line-chart"),tabName = "helpMarketForecaster")
+                                     )
                 )# end of sidebarMenu
               ),#end of dashboardSidebar
               
@@ -131,6 +143,113 @@ dashboardPage(skin = "green",
                             )# end of fluidrow
                           ) # End of fluidPage
                           ), # End of tabItem
+                  
+                  
+                  ### change the data sources 
+                  
+                  tabItem(tabName = "comparetwo",
+                          fluidPage(
+                            title = "Language Explorer",
+                            
+                            column(width = 12,
+                                   box(
+                                     title = "Compare Two Languages",
+                                     width = 12,
+                                     status = "primary",
+                                     solidHeader = TRUE,
+                                     background = "navy",
+                                     uiOutput("Lang1Query4Ui"),
+                                     uiOutput("Lang2Query4Ui"),
+                                     actionButton("query1", label = "Go")
+                                   ),
+                                   
+                                   conditionalPanel(
+                                     condition = "input.query1",
+                                     column(width = 12,
+                                            box(
+                                              title = "Data",
+                                              status = "primary",
+                                              width = 12,
+                                              solidHeader = TRUE,
+                                              collapsible = TRUE,
+                                              fluidRow(
+                                                column(width = 12,
+                                                       box(
+                                                         title = paste("Language Posts over years"),
+                                                         status = "primary",
+                                                         width = 6,
+                                                         solidHeader = FALSE,
+                                                         collapsible = TRUE,
+                                                         showOutput("winbyyear", "nvd3")
+                                                         
+                                                       ),
+                                                       box(
+                                                         title = paste("Matches Lost over years"),
+                                                         status = "primary",
+                                                         width = 6,
+                                                         solidHeader = FALSE,
+                                                         collapsible = TRUE,
+                                                         showOutput("lossbyyear", "nvd3")
+                                                         
+                                                       )
+                                                )
+                                              ) ,
+                                              
+                                              fluidRow(
+                                                column(width = 12,
+                                                       box(
+                                                         title = paste("Average First serve speed"),
+                                                         status = "primary",
+                                                         width = 6,
+                                                         solidHeader = FALSE,
+                                                         collapsible = TRUE,
+                                                         showOutput("firstspeedbyyear", "nvd3")
+                                                       ),
+                                                       box(
+                                                         title = paste("Average Second serve speed"),
+                                                         status = "primary",
+                                                         width = 6,
+                                                         solidHeader = FALSE,
+                                                         collapsible = TRUE,
+                                                         showOutput("secondspeedbyyear", "nvd3")
+                                                       )
+                                                )
+                                              )
+                                              ,
+                                              fluidRow(
+                                                column(width = 12,
+                                                       box(
+                                                         title = "Top Players Country A",
+                                                         status = "primary",
+                                                         width = 6,
+                                                         solidHeader = FALSE,
+                                                         collapsible = TRUE,
+                                                         htmlOutput("top3tableA")
+                                                         
+                                                       ),
+                                                       box(
+                                                         title = "Top Players Country B",
+                                                         status = "primary",
+                                                         width = 6,
+                                                         solidHeader = FALSE,
+                                                         collapsible = TRUE,
+                                                         htmlOutput("top3tableB")
+                                                         
+                                                       )
+                                                       
+                                                )
+                                              )
+                                              
+                                            )
+                                     )
+                                     
+                                   )
+                            )
+                          ) # End of fluidPage
+                  ),
+                  
+                  
+                  
                   tabItem(tabName = "explorer",
                           fluidPage(
                             title = "Explorer",

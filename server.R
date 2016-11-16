@@ -31,6 +31,68 @@ shinyServer(function(input, output, session) {
     )
   })
   
+  
+  
+  ## Select one language
+  output$Lang1Query4Ui <- renderUI({
+    lang1 = unique(sort(lang$language))
+    # country1 = sort(unique(matches$country1))
+    selectInput("countryinput1", label = "Select Language A:", choices = c(Choose='', as.character(lang1)), selectize = FALSE)
+  }) 
+  
+  ## Select second language
+  output$Lang2Query4Ui <- renderUI({
+    lang2 = unique(sort(lang$language))
+    # country1 = sort(unique(matches$country1))
+    selectInput("countryinput2", label = "Select Language A:", choices = c(Choose='', as.character(lang2)), selectize = FALSE)
+  }) 
+  
+  
+  output$winbyyear <- renderChart({
+    
+    withProgress(message = "Rendering number of posts over years", {
+      
+      d1 = screencountry1winData()
+      d2 = screencountry2winData()
+      # Subset into top results
+      d = rbind(d1,d2)
+      p <- nPlot(Freq ~ year, group = 'country', type = 'lineChart', id = 'chart', dom = "winbyyear", data = d, height = 400, width = 450)
+      p$chart(color = c('blue', 'red'))
+      p$yAxis( axisLabel = "Wins" )
+      p$xAxis( axisLabel = "Year" )
+      return(p)
+    })
+  })
+  
+  
+  # Get lang1 win data
+  screencountry1winData <-eventReactive(input$query1,{
+    # Get Deta
+    xyz = input$countryinput1
+    matchesCountry1 = lang[lang$language==xyz,]
+    count1 = aggregate(matchesCountry1$answer_count, by=list(Category=matchesCountry1$year), FUN=sum)
+    
+    
+    colnames(count1) <- c( "year", "Freq")
+    count1$country <- rep(xyz,nrow(count1))
+    return(count1)
+  }, ignoreNULL = FALSE)
+  
+  
+  # Get lang2 win data
+  screencountry2winData <-eventReactive(input$query1, {
+    in2 = input$countryinput2
+    matchesCountry2 = lang[lang$language=="c",]
+    count2 = aggregate(matchesCountry2$answer_count, by=list(Category=matchesCountry2$year), FUN=sum)
+    
+    
+    colnames(count2) <- c( "year", "Freq")
+    count2$country <- rep(in2,nrow(count2))
+    return(count2)
+  }, ignoreNULL = FALSE)
+  
+  
+  
   # Number of answers
   output$usAnnualBox <- renderValueBox({
     current <- languages[ which(languages$Language == "java"), ]
