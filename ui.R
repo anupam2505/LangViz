@@ -111,17 +111,17 @@ dashboardPage(skin = "green",
                               ) # End of column
                             ), # End of Fluid Row
                             fluidRow(
-                              column(width = 6,
-                                     box(
-                                       title = "Graphical Represention of top related word with Each Language",
-                                       status = "primary",
-                                       width = 12,
-                                       solidHeader = FALSE,
-                                       collapsible = TRUE,
-                                       htmlOutput('networkPlot')
-                                       #showOutput("top10StatesTS", "nvd3")
-                                     ) #End of Box
-                              ),# end of column
+                              # column(width = 6,
+                              #        box(
+                              #          title = "Graphical Represention of top related word with Each Language",
+                              #          status = "primary",
+                              #          width = 12,
+                              #          solidHeader = FALSE,
+                              #          collapsible = TRUE,
+                              #          htmlOutput('networkPlot')
+                              #          #showOutput("top10StatesTS", "nvd3")
+                              #        ) #End of Box
+                              # ),# end of column
                               column(width = 6,
                                      box(
                                        title = "Top 10 users",
@@ -143,7 +143,27 @@ dashboardPage(skin = "green",
                             )# end of fluidrow
                           ) # End of fluidPage
                           ), # End of tabItem
-                  
+                  tabItem(tabName = "compareall",
+                          fluidPage(
+                            title = "Compare all languages",
+                            tags$head(
+                              tags$script(src = 'http://d3js.org/d3.v3.min.js')
+                            ),
+                            fluidRow(
+                              column(width = 12,
+                                     box(
+                                       title = "Graphical Represention of top related word with Each Language",
+                                       status = "primary",
+                                       width = 12,
+                                       solidHeader = FALSE,
+                                       collapsible = TRUE,
+                                       htmlOutput('networkPlot')
+                                       #showOutput("top10StatesTS", "nvd3")
+                                     ) 
+                              )#end of column
+                            )
+                          )
+                  ),
                   
                   ### change the data sources 
                   
