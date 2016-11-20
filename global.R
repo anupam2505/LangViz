@@ -44,20 +44,14 @@ home <- getwd()
 
 setwd("processedData")
 
-currentZip    = read.csv("currentZip.csv", header = TRUE, stringsAsFactors = FALSE)
-currentCity   = read.csv("currentCity.csv", header = TRUE, stringsAsFactors = FALSE)
-currentCounty = read.csv("currentCounty.csv", header = TRUE, stringsAsFactors = FALSE)
-currentState  = read.csv("currentState.csv", header = TRUE, stringsAsFactors = FALSE)
-hviAllZip     = read.csv("hviAllZip.csv", header = TRUE, stringsAsFactors = FALSE)
-hviAllCity    = read.csv("hviAllCity.csv", header = TRUE, stringsAsFactors = FALSE)
-hviAllCounty  = read.csv("hviAllCounty.csv", header = TRUE, stringsAsFactors = FALSE)
-hviAllState   = read.csv("hviAllState.csv", header = TRUE, stringsAsFactors = FALSE)
+
 languages     = read.csv("languages.csv", header = TRUE, stringsAsFactors = FALSE)
 tfidf     = read.csv("question_keyphrases.csv", header = TRUE, stringsAsFactors = FALSE)
 lang =  read.csv("language_time_series.csv", header = TRUE, stringsAsFactors = FALSE)
 sim.mat <- read.csv("language_sim_matrix.csv", row.names=1)
 Language_keywords <- read.csv("Language_keywords.csv")
 nms <- names(sim.mat)
+sim <- as.matrix(sim.mat)
 
 # Read model data
 modelData <- read.xlsx("models.xlsx", sheetIndex = 1, header = TRUE)

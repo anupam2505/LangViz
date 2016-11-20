@@ -164,7 +164,7 @@ dashboardPage(skin = "green",
                             ),
                             
                             fluidRow(
-                              column(width = 6,
+                              column(width = 12,
                                      box(
                                        title = "Heat Map",
                                        status = "primary",
@@ -175,8 +175,10 @@ dashboardPage(skin = "green",
                                        )
                                        
                                        
-                                     ),
-                              column(width = 6,
+                                     )
+                              ),
+                            fluidRow(  
+                            column(width = 12,
                                      box(
                                        title = "Bubble Chart",
                                        status = "primary",
@@ -185,11 +187,12 @@ dashboardPage(skin = "green",
                                        collapsible = TRUE,
                                        bubblesOutput("bubble")
                                      )
-                                     
-                                     
-                              )
-                              )
                             )
+                                     
+                                     
+                              )
+                              )
+                            
                   ),
                   
                   ### change the data sources 
