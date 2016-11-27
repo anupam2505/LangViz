@@ -174,19 +174,19 @@ shinyServer(function(input, output, session) {
   
   ## network plot
   output$networkPlot <- renderPrint({
-    links <- tfidf
-    
+    links <- tfidf1
+    links$count = rep(1,length(links))
     nodes = data.frame("name" = unique(links[,1]))
     nodesnew = nodes
     nodes = rbind(nodes, data.frame("name" = links[,2]))
     links$source.index = match(links$language, nodes$name)-1
     
-    links$target.index = match(links$keyphrase, nodes$name)-1
+    links$target.index = match(links$tag, nodes$name)-1
     
     links$group = links$source.index
     nodes1 = cbind(nodesnew,c(0,1,2,3,4,5,6,7,8,9) )
     colnames(nodes1) <- c( "name", "group")
-    nodes2 = as.data.frame(cbind(links$keyphrase, links$group))
+    nodes2 = as.data.frame(cbind(links$tag, links$group))
     colnames(nodes2) <- c( "name", "group")
     nodes2 = rbind(nodes1, nodes2)
     colnames(nodes2) <- c( "name", "group")
@@ -194,7 +194,7 @@ shinyServer(function(input, output, session) {
     d3ForceNetwork(Links = links, Nodes = nodes2,
                         Source = "source.index", Target = "target.index",
                         width = 1000, height = 600, Group = "group",
-                        NodeID = "name", Value = 'tfidf', zoom = TRUE, parentElement = '#networkPlot',opacity = 0.9)
+                        NodeID = "name",  zoom = TRUE, parentElement = '#networkPlot',opacity = 0.9)
     
   })
   

@@ -61,39 +61,33 @@ dashboardPage(skin = "green",
                             ),
                             fluidRow(
                               column(width = 12,
-                                     valueBoxOutput("usViBox", width = 3),
-                                     valueBoxOutput("highestViBox", width = 3),
-                                     valueBoxOutput("usAnnualBox", width = 3),
-                                     valueBoxOutput("highestAnnualBox", width = 3)
-                              )#end of column
+                                     valueBoxOutput("numStatesBox", width = 3),
+                                     valueBoxOutput("numCountiesBox", width = 3),
+                                     valueBoxOutput("numCitiesBox", width = 3),
+                                     valueBoxOutput("numZipsBox", width = 3)
+                              )# end of column
                             ),# end of row
                             fluidRow(
                               column(width = 4,
                                      box(
-                                       title = "Visual Analytics for Top 10 programming Language",
+                                       title = "Welcome to Language Analytics",
                                        width = 12,
                                        height = 530,
                                        background = "orange",
                                        solidHeader = FALSE,
                                        collapsible = FALSE,
                                        collapsed = FALSE,
-                                       h3("Welcome to Language Analytics"),
-                                       p(
-                                         paste("Here, we are performing visual analytics on top 10 programming languages:")),
-                                       tags$ul(
-                                         tags$li("Top 10 tags"),
-                                         tags$li("Top 10 Topics"),
-                                         tags$li("Top 10 users")
-                                         ),
-                                       
-                                       p("Enjoy!")
+                                       h5("Before going somewhere lets first find what are earnings of the users based on their profession"),
+                                       h5(
+                                         paste("Seems like Software Development is pretty lucrative field. How about technology ?")
+                                       )
                                          )# end of box
                                        ),# end of column
                               column(width = 8,
                                      box(
                                        title = "Top 10 tags",
                                        status = "primary",
-                                       width = 12,
+                                       width = 8,
                                        height = 255,
                                        solidHeader = FALSE,
                                        collapsible = TRUE,
@@ -102,7 +96,7 @@ dashboardPage(skin = "green",
                                      box(
                                        title = "Top 10 topics",
                                        status = "primary",
-                                       width = 12,
+                                       width = 8,
                                        height = 255,
                                        solidHeader = FALSE,
                                        collapsible = TRUE,
@@ -132,15 +126,8 @@ dashboardPage(skin = "green",
                                        showOutput("top10CitiesTS", "nvd3")
                                      ) #End of Box
                               )# end of column
-                            ),#end of fluidrow
-                            fluidRow(
-                              column(width = 12,
-                                     valueBoxOutput("numStatesBox", width = 3),
-                                     valueBoxOutput("numCountiesBox", width = 3),
-                                     valueBoxOutput("numCitiesBox", width = 3),
-                                     valueBoxOutput("numZipsBox", width = 3)
-                              )# end of column
-                            )# end of fluidrow
+                            )#end of fluidrow
+                            # end of fluidrow
                           ) # End of fluidPage
                           ), # End of tabItem
                   tabItem(tabName = "compareall",
