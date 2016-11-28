@@ -68,7 +68,7 @@ dashboardPage(skin = "green",
                               )# end of column
                             ),# end of row
                             fluidRow(
-                              column(width = 4,
+                              column(width = 3,
                                      box(
                                        title = "Welcome to Language Analytics",
                                        width = 12,
@@ -83,20 +83,20 @@ dashboardPage(skin = "green",
                                        )
                                          )# end of box
                                        ),# end of column
-                              column(width = 8,
+                              column(width = 9,
                                      box(
                                        title = "Top 10 tags",
                                        status = "primary",
-                                       width = 8,
-                                       height = 255,
+                                       width = 12,
+                                       height = 530,
                                        solidHeader = FALSE,
                                        collapsible = TRUE,
-                                       showOutput("top10tfidf", "nvd3")
+                                       plotlyOutput("top10tfidf")
                                      ),
                                      box(
                                        title = "Top 10 topics",
                                        status = "primary",
-                                       width = 8,
+                                       width = 12,
                                        height = 255,
                                        solidHeader = FALSE,
                                        collapsible = TRUE,
@@ -183,7 +183,6 @@ dashboardPage(skin = "green",
                   ),
                   
                   ### change the data sources 
-                  
                   tabItem(tabName = "comparetwo",
                           fluidPage(
                             title = "Language Explorer",

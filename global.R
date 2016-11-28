@@ -28,6 +28,8 @@ library(d3Network)
 library(RCurl)
 library(shiny)
 library(bubbles)
+library(dplyr)
+library(stacksurveyr)
 
 ################################################################################
 #                             GLOBAL VARIABLES                                 #
@@ -51,6 +53,7 @@ tfidf1     = read.csv("language_tags.csv", header = TRUE, stringsAsFactors = FAL
 lang =  read.csv("language_time_series.csv", header = TRUE, stringsAsFactors = FALSE)
 sim.mat <- read.csv("language_sim_matrix.csv", row.names=1)
 Language_keywords <- read.csv("Language_keywords.csv")
+salary_by_occupation <- read.csv("salary_by_occupation.csv")
 nms <- names(sim.mat)
 sim <- as.matrix(sim.mat)
 

@@ -142,20 +142,34 @@ shinyServer(function(input, output, session) {
     )
   })
   
-  # Render Top 10 tags
-  output$top10tfidf <- renderChart({
-    current <- tfidf
-    cur <- head(arrange(current,desc(tfidf)), n = 10)
-    
-    cur$tfidf <- round(cur$tfidf * 100,2)
-    
-    p <- nPlot(tfidf~keyphrase, data = cur, type = "discreteBarChart", dom = "top10tfidf")
-    p$params$width <- 1000
-    p$params$height <- 200
-    p$xAxis(staggerLabels = TRUE)
-    p$yAxis(axisLabel = "TFIDF * 100", width = 50)
+  ### Salary Bases
+  output$top10tfidf <- renderPlotly({
+    salary_by_occupation = salary_by_occupation[order(salary_by_occupation$average_salary),]
+    p <- plot_ly(salary_by_occupation, y = ~average_salary, x= ~occupation, size = 2, type = 'scatter', mode = 'markers') %>%
+      layout(title = 'Earnings per occupation',
+             xaxis = list(showgrid = FALSE),
+             yaxis = list(showgrid = FALSE),
+             showlegend = FALSE)
+  
     return(p)
   })
+  
+  
+  
+#   # Render Top 10 tags
+#   output$top10tfidf <- renderChart({
+#     current <- tfidf
+#     cur <- head(arrange(current,desc(tfidf)), n = 10)
+#     
+#     cur$tfidf <- round(cur$tfidf * 100,2)
+#     
+#     p <- nPlot(tfidf~keyphrase, data = cur, type = "discreteBarChart", dom = "top10tfidf")
+#     p$params$width <- 700
+#     p$params$height <- 200
+#     p$xAxis(staggerLabels = TRUE)
+#     p$yAxis(axisLabel = "TFIDF * 100", width = 50)
+#     return(p)
+#   })
   
   # Render Top 10 topics
   output$top10CitiesBar <- renderChart({
