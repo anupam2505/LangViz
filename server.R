@@ -56,7 +56,7 @@ shinyServer(function(input, output, session) {
       d2 = screencountry2winData()
       # Subset into top results
       d = rbind(d1,d2)
-      p <- nPlot(Freq ~ year, group = 'country', type = 'lineChart', id = 'chart', dom = "winbyyear", data = d, height = 400, width = 450)
+      p <- nPlot(Freq ~ year, group = 'country', type = 'lineChart', id = 'chart', dom = "winbyyear", data = d, height = 400, width = 700)
       p$chart(color = c('blue', 'red'))
       p$yAxis( axisLabel = "Wins" )
       p$xAxis( axisLabel = "Year" )
@@ -271,7 +271,8 @@ shinyServer(function(input, output, session) {
   ## Radar chart 
   
   radar_func <- function(lang1, lang2) {
-    temp1 <- as.matrix(language_common_topics)
+    # temp = read.csv("/Users/Roshni/Downloads/LanguageAnalysis-master/data/language_domain.csv", sep=",", row.names=1)
+    temp1 <- as.matrix(language_domain)
     
     first_row_no<-which(temp1==lang1)
     second_row_no=which(temp1==lang2)
@@ -297,14 +298,15 @@ shinyServer(function(input, output, session) {
                          lang1 = c(web_div1,database1,ds1,sys_div1,user_int1),
                          lang2 = c(web_div2,database2,ds2,sys_div2,user_int2))
     
+    colnames(scores) = c("Label", input$countryinput1, input$countryinput2)
+    
     scores[is.na(scores)]<-0  
     chartJSRadar(scores, maxScale = 10, showToolTipLabel=TRUE)
     
   }
   
-  
   ## radar main function
-  output$radar <- renderChartJSRadar(radar_func(as.character(tolower(trimws("Java"))),as.character(tolower(trimws("mysql"))) ))
+  output$radar <- renderChartJSRadar(radar_func(as.character(tolower(trimws(input$countryinput1))),as.character(tolower(trimws(input$countryinput2))) ))
   
   
   output$title <- renderPrint({
@@ -322,8 +324,8 @@ shinyServer(function(input, output, session) {
   
   ## MAp
   output$map <- renderLeaflet({
-    lang1markers <- mapdata[mapdata$Language==as.character(tolower(trimws("java"))),]
-    lang2markers <- mapdata[mapdata$Language==as.character(tolower(trimws("mysql"))),]
+    lang1markers <- mapdata[mapdata$Language==as.character(tolower(trimws(input$countryinput1))),]
+    lang2markers <- mapdata[mapdata$Language==as.character(tolower(trimws(input$countryinput2))),]
     
     clusOptions1 = markerClusterOptions(iconCreateFunction=JS("function (cluster) {    
                                                               var childCount = cluster.getChildCount();  
@@ -354,8 +356,8 @@ shinyServer(function(input, output, session) {
       addTiles() %>% 
       addCircleMarkers(lng= lang1markers$Longitude, lat= lang1markers$Latitude, clusterOptions = clusOptions1, color="Blue") %>% 
       addCircleMarkers(lng= lang2markers$Longitude, lat= lang2markers$Latitude, clusterOptions = clusOptions2, color="Red") %>%
-      addLegend(colors=c("#b3c9d9","#489eba", "#16536e"), labels=c("<300", ">300 & <600", ">600"), title=paste(input$val1, " Users"))%>%
-      addLegend(colors=c("#fed07a","#fe8725", "#cf3b02"), labels=c("<300", ">300 & <600", ">600"), title=paste(input$val2, " Users"))
+      addLegend(colors=c("#b3c9d9","#489eba", "#16536e"), labels=c("<300", ">300 & <600", ">600"), title=paste(input$countryinput1, " Users"))%>%
+      addLegend(colors=c("#fed07a","#fe8725", "#cf3b02"), labels=c("<300", ">300 & <600", ">600"), title=paste(input$countryinput2, " Users"))
 })
   
   

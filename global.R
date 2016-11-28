@@ -57,7 +57,7 @@ sim.mat <- read.csv("language_sim_matrix.csv", row.names=1)
 Language_keywords <- read.csv("Language_keywords.csv")
 salary_by_occupation <- read.csv("salary_by_occupation.csv")
 ##radar
-language_common_topics <- read.csv("language_common_topics.csv")
+language_domain <- read.csv("language_domain.csv")
 ## Map
 mapdata <- read.csv("aggregated_mapdata.csv")
 nms <- names(sim.mat)

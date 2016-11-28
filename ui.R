@@ -205,30 +205,7 @@ dashboardPage(skin = "green",
                                               fluidRow(
                                                 column(width = 12,
                                                        box(
-                                                         title = paste("Language Posts over years"),
-                                                         status = "primary",
-                                                         width = 6,
-                                                         solidHeader = FALSE,
-                                                         collapsible = TRUE,
-                                                         showOutput("winbyyear", "nvd3")
-                                                         
-                                                       ),
-                                                       box(
-                                                         title = paste("Matches Lost over years"),
-                                                         status = "primary",
-                                                         width = 6,
-                                                         solidHeader = FALSE,
-                                                         collapsible = TRUE,
-                                                         chartJSRadarOutput("radar")
-                                                         
-                                                       )
-                                                )
-                                              ) ,
-                                              
-                                              fluidRow(
-                                                column(width = 12,
-                                                       box(
-                                                         title = paste("Average First serve speed"),
+                                                         title = paste("Find programmers around you !"),
                                                          status = "primary",
                                                          width = 12,
                                                          solidHeader = FALSE,
@@ -241,26 +218,30 @@ dashboardPage(skin = "green",
                                               fluidRow(
                                                 column(width = 12,
                                                        box(
-                                                         title = "Top Players Country A",
+                                                         title = paste("Language Posts over years"),
                                                          status = "primary",
-                                                         width = 6,
+                                                         width = 12,
                                                          solidHeader = FALSE,
                                                          collapsible = TRUE,
-                                                         htmlOutput("top3tableA")
-                                                         
-                                                       ),
-                                                       box(
-                                                         title = "Top Players Country B",
-                                                         status = "primary",
-                                                         width = 6,
-                                                         solidHeader = FALSE,
-                                                         collapsible = TRUE,
-                                                         htmlOutput("top3tableB")
+                                                         showOutput("winbyyear", "nvd3")
                                                          
                                                        )
-                                                       
                                                 )
-                                              )
+                                              ) ,
+                                              fluidRow(
+                                                column(width = 12,
+                                                       
+                                                       box(
+                                                         title = paste("Significance of language"),
+                                                         status = "primary",
+                                                         width = 12,
+                                                         solidHeader = FALSE,
+                                                         collapsible = TRUE,
+                                                         chartJSRadarOutput("radar")
+                                                         
+                                                       )
+                                                )
+                                              ) 
                                               
                                             )
                                      )
