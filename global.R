@@ -59,7 +59,7 @@ salary_by_occupation <- read.csv("salary_by_occupation.csv")
 ##radar
 language_common_topics <- read.csv("language_common_topics.csv")
 ## Map
-mapdata <- read.csv("data/aggregated_mapdata.csv")
+mapdata <- read.csv("aggregated_mapdata.csv")
 nms <- names(sim.mat)
 sim <- as.matrix(sim.mat)
 

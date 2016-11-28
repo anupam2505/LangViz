@@ -230,18 +230,10 @@ dashboardPage(skin = "green",
                                                        box(
                                                          title = paste("Average First serve speed"),
                                                          status = "primary",
-                                                         width = 6,
+                                                         width = 12,
                                                          solidHeader = FALSE,
                                                          collapsible = TRUE,
-                                                         showOutput("firstspeedbyyear", "nvd3")
-                                                       ),
-                                                       box(
-                                                         title = paste("Average Second serve speed"),
-                                                         status = "primary",
-                                                         width = 6,
-                                                         solidHeader = FALSE,
-                                                         collapsible = TRUE,
-                                                         showOutput("secondspeedbyyear", "nvd3")
+                                                         leafletOutput("map") 
                                                        )
                                                 )
                                               )
