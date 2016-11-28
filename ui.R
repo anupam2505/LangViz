@@ -32,8 +32,8 @@ dashboardPage(skin = "green",
 #                                      menuSubItem("Matlab", icon = icon("coffee"),tabName = "matlab")
 #                                      ),
                             menuItem("Comparitive Analyzer", tabName = "Comparitive", icon = icon("question-circle"),
-                                     menuSubItem("Campare All", icon = icon("user"),tabName = "compareall"),
-                                     menuSubItem("Caompare Two", icon = icon("coffee"),tabName = "comparetwo")
+                                     menuSubItem("Compare All", icon = icon("user"),tabName = "compareall"),
+                                     menuSubItem("Compare Two", icon = icon("coffee"),tabName = "comparetwo")
                                      # menuSubItem("Dashboard", icon = icon("dashboard"),tabName = "helpDashboard"),
                                      # menuItem("Market Explorer", icon = icon("search"),
                                      #          menuSubItem("Build a Query", icon = icon("search"), tabName = "helpBuildQuery"),
@@ -131,11 +131,24 @@ dashboardPage(skin = "green",
                               tags$script(src = 'http://d3js.org/d3.v3.min.js')
                             ),
                             fluidRow(
-                              column(width = 12,
+                              column(width = 3,
+                                     box(
+                                       title = "Lets explore all languages",
+                                       width = 12,
+                                       height = 700,
+                                       background = "orange",
+                                       solidHeader = FALSE,
+                                       collapsible = TRUE,
+                                       collapsed = FALSE,
+                                       h5("Relations between different languages.")
+                                     )# end of box
+                              ),
+                              column(width = 9,
                                      box(
                                        title = "Graphical Represention of top related word with Each Language",
                                        status = "primary",
                                        width = 12,
+                                       height = 700,
                                        solidHeader = FALSE,
                                        collapsible = TRUE,
                                        htmlOutput('networkPlot')
@@ -145,11 +158,24 @@ dashboardPage(skin = "green",
                             ),
                             
                             fluidRow(
-                              column(width = 12,
+                              column(width = 3,
+                                     box(
+                                       title = "Lets check similarity between two languages",
+                                       width = 12,
+                                       height = 500,
+                                       background = "orange",
+                                       solidHeader = FALSE,
+                                       collapsible = TRUE,
+                                       collapsed = FALSE,
+                                       h5("I hope it will help !")
+                                     )# end of box
+                              ),
+                              column(width = 9,
                                      box(
                                        title = "Heat Map",
                                        status = "primary",
                                        width = 12,
+                                       height = 500,
                                        solidHeader = FALSE,
                                        collapsible = TRUE,
                                        plotlyOutput("heat")
@@ -158,12 +184,25 @@ dashboardPage(skin = "green",
                                        
                                      )
                               ),
-                            fluidRow(  
-                            column(width = 12,
+                            fluidRow(
+                              column(width = 3,
+                                     box(
+                                       title = "Related Terms",
+                                       width = 12,
+                                       height = 700,
+                                       background = "orange",
+                                       solidHeader = FALSE,
+                                       collapsible = TRUE,
+                                       
+                                       h5("I hope it will help !")
+                                     )# end of box
+                              ),
+                            column(width = 9,
                                      box(
                                        title = "Bubble Chart",
                                        status = "primary",
                                        width = 12,
+                                       height = 700,
                                        solidHeader = FALSE,
                                        collapsible = TRUE,
                                        bubblesOutput("bubble")
@@ -203,11 +242,24 @@ dashboardPage(skin = "green",
                                               solidHeader = TRUE,
                                               collapsible = TRUE,
                                               fluidRow(
-                                                column(width = 12,
+                                                column(width = 3,
+                                                       box(
+                                                         title = "How about connecting with experts near you ",
+                                                         width = 12,
+                                                         height = 530,
+                                                         background = "orange",
+                                                         solidHeader = FALSE,
+                                                         collapsible = FALSE,
+                                                         collapsed = FALSE,
+                                                         h5("And land you dream job !")
+                                                       )# end of box
+                                                ),
+                                                column(width = 9,
                                                        box(
                                                          title = paste("Find programmers around you !"),
                                                          status = "primary",
                                                          width = 12,
+                                                         height = 530,
                                                          solidHeader = FALSE,
                                                          collapsible = TRUE,
                                                          leafletOutput("map") 
@@ -216,11 +268,24 @@ dashboardPage(skin = "green",
                                               )
                                               ,
                                               fluidRow(
-                                                column(width = 12,
+                                                column(width = 3,
                                                        box(
-                                                         title = paste("Language Posts over years"),
+                                                         title = "Popularity of both languages over time",
+                                                         width = 12,
+                                                         height = 530,
+                                                         background = "orange",
+                                                         solidHeader = FALSE,
+                                                         collapsible = FALSE,
+                                                         collapsed = FALSE,
+                                                         h5("Pick the popular one ;) !")
+                                                       )# end of box
+                                                ),
+                                                column(width = 9,
+                                                       box(
+                                                         title = paste("Language Popularity over years"),
                                                          status = "primary",
                                                          width = 12,
+                                                         height = 530,
                                                          solidHeader = FALSE,
                                                          collapsible = TRUE,
                                                          showOutput("winbyyear", "nvd3")
@@ -229,12 +294,25 @@ dashboardPage(skin = "green",
                                                 )
                                               ) ,
                                               fluidRow(
-                                                column(width = 12,
+                                                column(width = 3,
+                                                       box(
+                                                         title = "Significance of both language in different domains",
+                                                         width = 12,
+                                                         height = 530,
+                                                         background = "orange",
+                                                         solidHeader = FALSE,
+                                                         collapsible = FALSE,
+                                                         collapsed = FALSE,
+                                                         h5("It will help you to pick a language !")
+                                                       )# end of box
+                                                ),
+                                                column(width = 9,
                                                        
                                                        box(
-                                                         title = paste("Significance of language"),
+                                                         title = paste("Significance of languages"),
                                                          status = "primary",
                                                          width = 12,
+                                                         height = 530,
                                                          solidHeader = FALSE,
                                                          collapsible = TRUE,
                                                          chartJSRadarOutput("radar")

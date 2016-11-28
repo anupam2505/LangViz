@@ -207,7 +207,7 @@ shinyServer(function(input, output, session) {
     nodes2 = as.data.frame(nodes2)
     d3ForceNetwork(Links = links, Nodes = nodes2,
                         Source = "source.index", Target = "target.index",
-                        width = 1000, height = 600, Group = "group",
+                        width = 700, height = 600, Group = "group",
                         NodeID = "name",  zoom = TRUE, parentElement = '#networkPlot',opacity = 0.9)
     
   })
