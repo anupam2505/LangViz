@@ -145,11 +145,16 @@ shinyServer(function(input, output, session) {
   ### Salary Bases
   output$top10tfidf <- renderPlotly({
     salary_by_occupation = salary_by_occupation[order(salary_by_occupation$average_salary),]
-    p <- plot_ly(salary_by_occupation, y = ~average_salary, x= ~occupation, size = 1, color = ~occupation,  type = 'scatter', mode = 'markers') %>%
+    p <- plot_ly(salary_by_occupation, y = ~average_salary, x= ~occupation, color = ~occupation, size = 0.1, type = 'scatter', mode = 'markers') %>%
       layout(
-             xaxis = list(showgrid = FALSE),
-             yaxis = list(showgrid = FALSE),
-             showlegend = FALSE)
+        xaxis = list(zeroline = TRUE,
+                     showline = TRUE,
+                     mirror = "ticks",
+                     showgrid = FALSE),
+        yaxis = list(zeroline = TRUE,
+                     showline = TRUE,
+                     mirror = "ticks",
+                     showgrid = FALSE), showlegend = FALSE)
   
     return(p)
   })
@@ -166,11 +171,16 @@ shinyServer(function(input, output, session) {
       summarize_each(funs(mean(., na.rm = TRUE)), age_midpoint, salary_midpoint) 
     colnames(abc) = c("Technology", "Average_Age", "Average_Salary")
       
-    p <- plot_ly(abc, x = ~Average_Age, y= ~Average_Salary, size = 1, color = ~Technology,  type = 'scatter', mode = 'markers') %>%
+    p <- plot_ly(abc, x = ~Average_Age, y= ~Average_Salary, size = 0.1, color = ~Technology,   type = 'scatter', mode = 'markers') %>%
       layout(
-             xaxis = list(showgrid = FALSE),
-             yaxis = list(showgrid = FALSE),
-             showlegend = FALSE)
+             xaxis = list(zeroline = TRUE,
+                          showline = TRUE,
+                          mirror = "ticks",
+                          showgrid = FALSE),
+             yaxis = list(zeroline = TRUE,
+                          showline = TRUE,
+                          mirror = "ticks",
+               showgrid = FALSE), showlegend = FALSE)
     
     return(p)
   })
@@ -257,6 +267,46 @@ shinyServer(function(input, output, session) {
     }
   })
   
+  
+  ## Radar chart 
+  
+  radar_func <- function(lang1, lang2) {
+    temp1 <- as.matrix(language_common_topics)
+    
+    first_row_no<-which(temp1==lang1)
+    second_row_no=which(temp1==lang2)
+    my_row1<-temp1[which(temp1==lang1)]
+    a<-as.vector(temp1[first_row_no,])
+    b<-as.vector(temp1[second_row_no,])
+    
+    web_div1 <- as.numeric(a[2])/(as.numeric(a[2])+as.numeric(b[2]))*10
+    database1 <- as.numeric(a[3])/(as.numeric(a[3])+as.numeric(b[3]))*10
+    ds1 <- as.numeric(a[4])/(as.numeric(a[4])+as.numeric(b[4]))*10
+    sys_div1 <- as.numeric(a[5])/(as.numeric(a[5])+as.numeric(b[5]))*10
+    user_int1 <- as.numeric(a[6])/(as.numeric(a[6])+as.numeric(b[6]))*10
+    
+    web_div2 <- as.numeric(b[2])/(as.numeric(a[2])+as.numeric(b[2]))*10
+    database2 <- as.numeric(b[3])/(as.numeric(a[3])+as.numeric(b[3]))*10
+    ds2 <- as.numeric(b[4])/(as.numeric(a[4])+as.numeric(b[4]))*10
+    sys_div2 <- as.numeric(b[5])/(as.numeric(a[5])+as.numeric(b[5]))*10
+    user_int2 <- as.numeric(b[6])/(as.numeric(a[6])+as.numeric(b[6]))*10
+    
+    
+    scores <- data.frame("Label"=c("Web Dev", "Database", "Data Science",
+                                   "System Dev",  "User Interface"),
+                         lang1 = c(web_div1,database1,ds1,sys_div1,user_int1),
+                         lang2 = c(web_div2,database2,ds2,sys_div2,user_int2))
+    
+    scores[is.na(scores)]<-0  
+    chartJSRadar(scores, maxScale = 10, showToolTipLabel=TRUE)
+    
+  }
+  
+  
+  ## radar main function
+  output$radar <- renderChartJSRadar(radar_func(as.character(tolower(trimws("Java"))),as.character(tolower(trimws("mysql"))) ))
+  
+  
   output$title <- renderPrint({
     
     s <- event_data("plotly_click")
@@ -269,5 +319,47 @@ shinyServer(function(input, output, session) {
       
     }
   })
+  
+  ## MAp
+  output$map <- renderLeaflet({
+    lang1markers <- mapdata[mapdata$Language==as.character(tolower(trimws("java"))),]
+    lang2markers <- mapdata[mapdata$Language==as.character(tolower(trimws("mysql"))),]
+    
+    clusOptions1 = markerClusterOptions(iconCreateFunction=JS("function (cluster) {    
+                                                              var childCount = cluster.getChildCount();  
+                                                              if (childCount < 300) {  
+                                                              c = 'rgba(179, 201, 217, 0.7);'
+                                                              } else if (childCount < 600) {  
+                                                              c = 'rgba(72, 158, 186, 0.7);'  
+                                                              } else { 
+                                                              c = 'rgba(22, 83, 110, 0.7);'  
+                                                              }    
+                                                              return new L.DivIcon({ html: '<div style=\"background-color:'+c+'\"><span>' + childCount + '</span></div>', className: 'marker-cluster', iconSize: new L.Point(40, 40) });
+                                                              
+  }"))
+    clusOptions2 = markerClusterOptions(iconCreateFunction=JS("function (cluster) {    
+                                                              var childCount = cluster.getChildCount();  
+                                                              if (childCount < 300) {  
+                                                              c = 'rgba(254, 208, 122, 0.7);'
+                                                              } else if (childCount < 600) {  
+                                                              c = 'rgba(254, 135, 37, 0.7);'  
+                                                              } else { 
+                                                              c = 'rgba(207, 59, 2, 0.7);'  
+                                                              }    
+                                                              return new L.DivIcon({ html: '<div style=\"background-color:'+c+'\"><span>' + childCount + '</span></div>', className: 'marker-cluster', iconSize: new L.Point(40, 40) });
+                                                              
+    }"))
+
+    leaflet() %>% 
+      addTiles() %>% 
+      addCircleMarkers(lng= lang1markers$Longitude, lat= lang1markers$Latitude, clusterOptions = clusOptions1, color="Blue") %>% 
+      addCircleMarkers(lng= lang2markers$Longitude, lat= lang2markers$Latitude, clusterOptions = clusOptions2, color="Red") %>%
+      addLegend(colors=c("#b3c9d9","#489eba", "#16536e"), labels=c("<300", ">300 & <600", ">600"), title=paste(input$val1, " Users"))%>%
+      addLegend(colors=c("#fed07a","#fe8725", "#cf3b02"), labels=c("<300", ">300 & <600", ">600"), title=paste(input$val2, " Users"))
+})
+  
+  
+  
+  
   
 })

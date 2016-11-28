@@ -30,6 +30,8 @@ library(shiny)
 library(bubbles)
 library(dplyr)
 library(stacksurveyr)
+library(radarchart)
+library(leaflet)
 
 ################################################################################
 #                             GLOBAL VARIABLES                                 #
@@ -54,6 +56,10 @@ lang =  read.csv("language_time_series.csv", header = TRUE, stringsAsFactors = F
 sim.mat <- read.csv("language_sim_matrix.csv", row.names=1)
 Language_keywords <- read.csv("Language_keywords.csv")
 salary_by_occupation <- read.csv("salary_by_occupation.csv")
+##radar
+language_common_topics <- read.csv("language_common_topics.csv")
+## Map
+mapdata <- read.csv("data/aggregated_mapdata.csv")
 nms <- names(sim.mat)
 sim <- as.matrix(sim.mat)
 

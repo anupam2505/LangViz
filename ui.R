@@ -20,17 +20,17 @@ dashboardPage(skin = "green",
                             # ),
                             # menuItem("Value Analyzer", tabName = "valueAnalysis", icon = icon("area-chart")),
                             # menuItem("Visualization", tabName = "forecast", icon = icon("bar-chart")),
-                            menuItem("Languages", tabName = "Languages", icon = icon("question-circle"),
-                                     menuSubItem("Java", icon = icon("user"),tabName = "java"),
-                                     menuSubItem("MySQL", icon = icon("coffee"),tabName = "mysql"),
-                                     menuSubItem("C", icon = icon("coffee"),tabName = "c"),
-                                     menuSubItem("C++", icon = icon("coffee"),tabName = "c++"),
-                                     menuSubItem("Python", icon = icon("coffee"),tabName = "python"),
-                                     menuSubItem("SQL", icon = icon("coffee"),tabName = "sql"),
-                                     menuSubItem("Javascript", icon = icon("coffee"),tabName = "javascript"),
-                                     menuSubItem("HTML", icon = icon("coffee"),tabName = "html"),
-                                     menuSubItem("Matlab", icon = icon("coffee"),tabName = "matlab")
-                                     ),
+#                             menuItem("Languages", tabName = "Languages", icon = icon("question-circle"),
+#                                      menuSubItem("Java", icon = icon("user"),tabName = "java"),
+#                                      menuSubItem("MySQL", icon = icon("coffee"),tabName = "mysql"),
+#                                      menuSubItem("C", icon = icon("coffee"),tabName = "c"),
+#                                      menuSubItem("C++", icon = icon("coffee"),tabName = "c++"),
+#                                      menuSubItem("Python", icon = icon("coffee"),tabName = "python"),
+#                                      menuSubItem("SQL", icon = icon("coffee"),tabName = "sql"),
+#                                      menuSubItem("Javascript", icon = icon("coffee"),tabName = "javascript"),
+#                                      menuSubItem("HTML", icon = icon("coffee"),tabName = "html"),
+#                                      menuSubItem("Matlab", icon = icon("coffee"),tabName = "matlab")
+#                                      ),
                             menuItem("Comparitive Analyzer", tabName = "Comparitive", icon = icon("question-circle"),
                                      menuSubItem("Campare All", icon = icon("user"),tabName = "compareall"),
                                      menuSubItem("Caompare Two", icon = icon("coffee"),tabName = "comparetwo")
@@ -99,17 +99,14 @@ dashboardPage(skin = "green",
                             fluidRow(
                               column(width = 3,
                                      box(
-                                       title = "Welcome to Language Analytics",
+                                       title = "Let's talk about the technologies that are in high demand in 2016",
                                        width = 12,
                                        height = 530,
                                        background = "orange",
                                        solidHeader = FALSE,
                                        collapsible = FALSE,
                                        collapsed = FALSE,
-                                       h5("Before going somewhere lets first find what are earnings of the users based on their profession"),
-                                       h5(
-                                         paste("Seems like Software Development is pretty lucrative field. How about technology ?")
-                                       )
+                                       h5("It will help you to earn more.")
                                      )# end of box
                               ),# end of column
                               column(width = 9,
@@ -222,7 +219,7 @@ dashboardPage(skin = "green",
                                                          width = 6,
                                                          solidHeader = FALSE,
                                                          collapsible = TRUE,
-                                                         showOutput("lossbyyear", "nvd3")
+                                                         chartJSRadarOutput("radar")
                                                          
                                                        )
                                                 )
