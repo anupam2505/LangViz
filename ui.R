@@ -85,48 +85,44 @@ dashboardPage(skin = "green",
                                        ),# end of column
                               column(width = 9,
                                      box(
-                                       title = "Top 10 tags",
+                                       title = "Best Earning Profession",
                                        status = "primary",
                                        width = 12,
                                        height = 530,
                                        solidHeader = FALSE,
                                        collapsible = TRUE,
                                        plotlyOutput("top10tfidf")
-                                     ),
+                                     )
+                              ) # End of column
+                            ), 
+                            fluidRow(
+                              column(width = 3,
                                      box(
-                                       title = "Top 10 topics",
+                                       title = "Welcome to Language Analytics",
+                                       width = 12,
+                                       height = 530,
+                                       background = "orange",
+                                       solidHeader = FALSE,
+                                       collapsible = FALSE,
+                                       collapsed = FALSE,
+                                       h5("Before going somewhere lets first find what are earnings of the users based on their profession"),
+                                       h5(
+                                         paste("Seems like Software Development is pretty lucrative field. How about technology ?")
+                                       )
+                                     )# end of box
+                              ),# end of column
+                              column(width = 9,
+                                     box(
+                                       title = "Trending Technology in 2016",
                                        status = "primary",
                                        width = 12,
-                                       height = 255,
+                                       height = 530,
                                        solidHeader = FALSE,
                                        collapsible = TRUE,
-                                       showOutput("top10CitiesBar", "nvd3")
+                                       plotlyOutput("trendingtech")
                                      ) #End of Box
                               ) # End of column
-                            ), # End of Fluid Row
-                            fluidRow(
-                              # column(width = 6,
-                              #        box(
-                              #          title = "Graphical Represention of top related word with Each Language",
-                              #          status = "primary",
-                              #          width = 12,
-                              #          solidHeader = FALSE,
-                              #          collapsible = TRUE,
-                              #          htmlOutput('networkPlot')
-                              #          #showOutput("top10StatesTS", "nvd3")
-                              #        ) #End of Box
-                              # ),# end of column
-                              column(width = 6,
-                                     box(
-                                       title = "Top 10 users",
-                                       status = "primary",
-                                       width = 12,
-                                       solidHeader = FALSE,
-                                       collapsible = TRUE,
-                                       showOutput("top10CitiesTS", "nvd3")
-                                     ) #End of Box
-                              )# end of column
-                            )#end of fluidrow
+                            )
                             # end of fluidrow
                           ) # End of fluidPage
                           ), # End of tabItem

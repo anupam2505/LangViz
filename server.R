@@ -121,7 +121,7 @@ shinyServer(function(input, output, session) {
   # Render total number of questions
   output$numCountiesBox <- renderValueBox({
     valueBox(
-      paste0(1000), paste("Questions"), 
+      paste0(125798), paste("Questions"), 
       icon = icon("question"), color = "yellow"
     )
   })
@@ -129,7 +129,7 @@ shinyServer(function(input, output, session) {
   # Render total number of answers
   output$numCitiesBox <- renderValueBox({
     valueBox(
-      paste0(2500), paste("Answers"), 
+      paste0(153214), paste("Answers"), 
       icon = icon("comments"), color = "red"
     )
   })
@@ -137,7 +137,7 @@ shinyServer(function(input, output, session) {
   # Render total number of users
   output$numZipsBox <- renderValueBox({
     valueBox(
-      paste0(850), paste("Users"), 
+      paste0(8500), paste("Users"), 
       icon = icon("users"), color = "yellow"
     )
   })
@@ -145,8 +145,8 @@ shinyServer(function(input, output, session) {
   ### Salary Bases
   output$top10tfidf <- renderPlotly({
     salary_by_occupation = salary_by_occupation[order(salary_by_occupation$average_salary),]
-    p <- plot_ly(salary_by_occupation, y = ~average_salary, x= ~occupation, size = 2, type = 'scatter', mode = 'markers') %>%
-      layout(title = 'Earnings per occupation',
+    p <- plot_ly(salary_by_occupation, y = ~average_salary, x= ~occupation, size = 1, color = ~occupation,  type = 'scatter', mode = 'markers') %>%
+      layout(
              xaxis = list(showgrid = FALSE),
              yaxis = list(showgrid = FALSE),
              showlegend = FALSE)
@@ -156,32 +156,22 @@ shinyServer(function(input, output, session) {
   
   
   
-#   # Render Top 10 tags
-#   output$top10tfidf <- renderChart({
-#     current <- tfidf
-#     cur <- head(arrange(current,desc(tfidf)), n = 10)
-#     
-#     cur$tfidf <- round(cur$tfidf * 100,2)
-#     
-#     p <- nPlot(tfidf~keyphrase, data = cur, type = "discreteBarChart", dom = "top10tfidf")
-#     p$params$width <- 700
-#     p$params$height <- 200
-#     p$xAxis(staggerLabels = TRUE)
-#     p$yAxis(axisLabel = "TFIDF * 100", width = 50)
-#     return(p)
-#   })
+
   
-  # Render Top 10 topics
-  output$top10CitiesBar <- renderChart({
-    current <- tfidf
-    cur <- head(arrange(current,desc(tfidf)), n = 10)
+  # Trending technology in 2016
+  output$trendingtech <-renderPlotly({
+    abc = stack_survey %>%
+      inner_join(stack_multi("tech_do")) %>%
+      group_by(answer) %>%
+      summarize_each(funs(mean(., na.rm = TRUE)), age_midpoint, salary_midpoint) 
+    colnames(abc) = c("Technology", "Average_Age", "Average_Salary")
+      
+    p <- plot_ly(abc, x = ~Average_Age, y= ~Average_Salary, size = 1, color = ~Technology,  type = 'scatter', mode = 'markers') %>%
+      layout(
+             xaxis = list(showgrid = FALSE),
+             yaxis = list(showgrid = FALSE),
+             showlegend = FALSE)
     
-    cur$tfidf <- round(cur$tfidf * 100,2)
-    p <- nPlot(tfidf~keyphrase, data = cur, type = "discreteBarChart", dom = "top10CitiesBar")
-    p$params$width <- 1000
-    p$params$height <- 200
-    p$xAxis(staggerLabels = TRUE)
-    p$yAxis(axisLabel = "TFIDF * 100", width = 50)
     return(p)
   })
   
