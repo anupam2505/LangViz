@@ -79,7 +79,8 @@ dashboardPage(skin = "green",
                                        collapsed = FALSE,
                                        h5("Before going somewhere lets first find what are earnings of the users based on their profession"),
                                        h5(
-                                         paste("Seems like Software Development is pretty lucrative field. How about technology ?")
+                                         paste("Seems like Software Development is having very high demand. Awesome ! I want to earn a lot of money.
+                                               what technology I should in software development ? Okay.. Scroll down and know more")
                                        )
                                          )# end of box
                                        ),# end of column
