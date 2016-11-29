@@ -189,7 +189,7 @@ shinyServer(function(input, output, session) {
   ## network plot
   output$networkPlot <- renderPrint({
     links <- tfidf1
-    #links$count = rep(10,length(links))
+    links$count = rep(10,length(links))
     nodes = data.frame("name" = unique(links[,1]))
     nodesnew = nodes
     nodes = rbind(nodes, data.frame("name" = links[,2]))
