@@ -160,7 +160,7 @@ dashboardPage(skin = "green",
                             
                             column(width = 12,
                                    box(
-                                     title = "Best professions of 2016",
+                                     title = "Check common topics between different languages",
                                      status = "success",
                                      width = 12,
                                      solidHeader = TRUE,
@@ -173,7 +173,6 @@ dashboardPage(skin = "green",
                                                 height = 700,
                                                 background = "orange",
                                                 solidHeader = FALSE,
-                                                collapsible = TRUE,
                                                 collapsed = FALSE,
                                                 h5("Relations between different languages.")
                                               )# end of box
@@ -185,7 +184,6 @@ dashboardPage(skin = "green",
                                                 width = 12,
                                                 height = 700,
                                                 solidHeader = FALSE,
-                                                collapsible = TRUE,
                                                 htmlOutput('networkPlot')
                                                 #showOutput("top10StatesTS", "nvd3")
                                               ) 
@@ -196,7 +194,7 @@ dashboardPage(skin = "green",
                             
                             column(width = 12,
                                    box(
-                                     title = "Best professions of 2016",
+                                     title = "Similarity between two languages",
                                      status = "success",
                                      width = 12,
                                      solidHeader = TRUE,
@@ -209,7 +207,6 @@ dashboardPage(skin = "green",
                                                 height = 500,
                                                 background = "orange",
                                                 solidHeader = FALSE,
-                                                collapsible = TRUE,
                                                 collapsed = FALSE,
                                                 h5("I hope it will help !")
                                               )# end of box
@@ -221,44 +218,42 @@ dashboardPage(skin = "green",
                                                 width = 12,
                                                 height = 500,
                                                 solidHeader = FALSE,
-                                                collapsible = TRUE,
                                                 plotlyOutput("heat")
                                               )
                                               
                                               
                                        )
+                                     ),
+                                     fluidRow(
+                                       column(width = 3,
+                                              box(
+                                                title = "Related Terms",
+                                                width = 12,
+                                                height = 700,
+                                                background = "orange",
+                                                solidHeader = FALSE,
+                                                collapsible = TRUE,
+                                                
+                                                h5("I hope it will help !")
+                                              )# end of box
+                                       ),
+                                       column(width = 9,
+                                              box(
+                                                title = "Bubble Chart",
+                                                status = "success",
+                                                width = 12,
+                                                height = 700,
+                                                solidHeader = FALSE,
+                                                collapsible = TRUE,
+                                                bubblesOutput("bubble")
+                                              )
+                                       )
+                                       
                                      )
                                    )
-                            ),
-                            
-                            fluidRow(
-                              column(width = 3,
-                                     box(
-                                       title = "Related Terms",
-                                       width = 12,
-                                       height = 700,
-                                       background = "orange",
-                                       solidHeader = FALSE,
-                                       collapsible = TRUE,
-                                       
-                                       h5("I hope it will help !")
-                                     )# end of box
-                              ),
-                            column(width = 9,
-                                     box(
-                                       title = "Bubble Chart",
-                                       status = "success",
-                                       width = 12,
-                                       height = 700,
-                                       solidHeader = FALSE,
-                                       collapsible = TRUE,
-                                       bubblesOutput("bubble")
-                                     )
                             )
-                                     
-                                     
-                              )
-                              )
+                            
+                          )
                             
                   ),
                   
