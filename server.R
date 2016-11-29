@@ -144,7 +144,7 @@ shinyServer(function(input, output, session) {
   
   ### Salary Bases
   output$top10tfidf <- renderPlotly({
-    salary_by_occupation = salary_by_occupation[order(salary_by_occupation$average_salary),]
+    salary_by_occupation = salary_by_occupation[order(salary_by_occupation$Average_Salary),]
     p <- plot_ly(salary_by_occupation, y = ~Average_Salary, x= ~Occupation, text = ~Languages, color = ~Occupation, size = ~Satisfaction, type = 'scatter', mode = 'markers') %>%
       layout(
         xaxis = list(zeroline = TRUE,
@@ -189,7 +189,7 @@ shinyServer(function(input, output, session) {
   ## network plot
   output$networkPlot <- renderPrint({
     links <- tfidf1
-    links$count = rep(1,length(links))
+    #links$count = rep(10,length(links))
     nodes = data.frame("name" = unique(links[,1]))
     nodesnew = nodes
     nodes = rbind(nodes, data.frame("name" = links[,2]))
@@ -226,37 +226,31 @@ shinyServer(function(input, output, session) {
     if (length(s)) {
       vars <- c(s[["x"]], s[["y"]]) # s[["x"]] and s[["y"]] are lang1 and lang2
       library(bubbles)
-      lang1 <- Language_keywords[which(grepl(as.character(s[["x"]]), Language_keywords$Language, ignore.case = TRUE)),]
-      lang2 <- Language_keywords[which(grepl(as.character(s[["y"]]), Language_keywords$Language, ignore.case = TRUE)),]
       if(as.character(s[["x"]])!=as.character(s[["y"]]))
       {  
-        common <- data.frame(rbind(lang1, lang2, make.row.names=FALSE))
-        dup <- data.frame(name=common[which(duplicated(common$name)),]$name)
-        
-        if(nrow(dup)==0)
+        combo1 <- paste(as.character(tolower(s[["x"]])),"-",as.character(tolower(s[["y"]])), sep="")
+        combolang1 <- Language_keywords2[Language_keywords2$language_pair==combo1,]
+        combo2 <- paste(as.character(tolower(s[["y"]])),"-",as.character(tolower(s[["x"]])), sep="")
+        combolang2 <- Language_keywords2[Language_keywords2$language_pair==combo2,]
+        combolang <- data.frame(rbind(combolang1, combolang2, make.row.names=FALSE))
+        yrPal <- colorRampPalette(c("#E0F7FA", "#00ACC1"))
+        if(nrow(combolang)==0)
           bubbles(value = runif(26), label = LETTERS,
-                  color = rainbow(26, alpha=NULL)[sample(26)])
+                  color = yrPal(26)[runif(26),breaks = 8])
         else
         {
-          dup$count <- sapply(dup$name, function(x){
-            max(lang1[lang1$name==as.character(x),]$count, lang2[lang2$name==as.character(x),]$count)
-          })
-          yrPal <- colorRampPalette(c('yellow', 'red'))
-          dup$color <- yrPal(10)[as.numeric(cut(dup$count,breaks = 10))]
-          
-          #bubbles::bubbles(value = dup$count, tooltip=dup$count,label = dup$name, color = heat.colors(nrow(dup), alpha = NULL)[sample(nrow(dup))])
-          bubbles::bubbles(value = dup$count, tooltip=dup$count,label = dup$name, color = dup$color)
+          yrPal <- colorRampPalette(c("#E0F7FA", "#00ACC1"))
+          combolang$color <- yrPal(10)[as.numeric(cut(combolang$count,breaks = 8))]
+          bubbles::bubbles(value = combolang$count, tooltip=combolang$count,label = combolang$topic, color = combolang$color)
         }
       }
       else 
       {
         #Tags for each language
-        
         lang <- Language_keywords[which(grepl(as.character(s[["x"]]), Language_keywords$Language, ignore.case = TRUE)),]
-        yrPal <- colorRampPalette(c('yellow', 'red'))
+        yrPal <- colorRampPalette(c("#E0F7FA", "#00ACC1"))
         lang$color <- yrPal(10)[as.numeric(cut(lang$count,breaks = 10))]
         bubbles::bubbles(value = lang$count, tooltip=lang$count,label = lang$name, color = lang$color)
-        
       }  
       
     }

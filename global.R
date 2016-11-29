@@ -52,8 +52,11 @@ languages     = read.csv("languages.csv", header = TRUE, stringsAsFactors = FALS
 tfidf     = read.csv("question_keyphrases.csv", header = TRUE, stringsAsFactors = FALSE)
 tfidf1     = read.csv("language_tags.csv", header = TRUE, stringsAsFactors = FALSE)
 lang =  read.csv("language_time_series.csv", header = TRUE, stringsAsFactors = FALSE)
-sim.mat <- read.csv("language_sim_matrix.csv", row.names=1)
+simmat <- read.csv("language_sim_matrix.csv", row.names=1)
+sim <- as.matrix(simmat)
 Language_keywords <- read.csv("Language_keywords.csv")
+Language_keywords2 <- read.csv("language_common_topics.csv")
+
 salary_by_occupation <- read.csv("salary_by_occupation.csv")
 ##radar
 language_domain <- read.csv("language_domain.csv")
