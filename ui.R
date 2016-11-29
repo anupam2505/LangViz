@@ -61,6 +61,19 @@ dashboardPage(skin = "green",
                             ),
                             fluidRow(
                               column(width = 12,
+                                     box(
+                                       title = "Welcome to Language Analytics ! Explore best career paths based on trending technologies and languages. ",
+                                       width = 12,
+                                       height = 50,
+                                       background = "green",
+                                       solidHeader = TRUE,
+                                       collapsible = TRUE,
+                                       collapsed = TRUE
+                                       )
+                              )# end of column
+                            ),
+                            fluidRow(
+                              column(width = 12,
                                      valueBoxOutput("numStatesBox", width = 3),
                                      valueBoxOutput("numCountiesBox", width = 3),
                                      valueBoxOutput("numCitiesBox", width = 3),
@@ -92,6 +105,7 @@ dashboardPage(skin = "green",
                                        height = 530,
                                        solidHeader = FALSE,
                                        collapsible = TRUE,
+                                       collapsed = FALSE,
                                        plotlyOutput("top10tfidf")
                                      )
                               ) # End of column

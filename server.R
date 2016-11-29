@@ -110,6 +110,14 @@ shinyServer(function(input, output, session) {
     )
   })
   
+  ## Landing page info box
+  output$infobox <- renderValueBox({
+    valueBox(
+      paste("Best career paths based on trending technologies and languages."), 
+      icon = icon("info"), color = "orange"
+    )
+  })
+  
   # Render total number of languages
   output$numStatesBox <- renderValueBox({
     valueBox(
