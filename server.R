@@ -44,7 +44,7 @@ shinyServer(function(input, output, session) {
   output$Lang2Query4Ui <- renderUI({
     lang2 = unique(sort(lang$language))
     # country1 = sort(unique(matches$country1))
-    selectInput("countryinput2", label = "Select Language A:", choices = c(Choose='', as.character(lang2)), selectize = FALSE)
+    selectInput("countryinput2", label = "Select Language B:", choices = c(Choose='', as.character(lang2)), selectize = FALSE)
   }) 
   
   
