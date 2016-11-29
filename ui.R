@@ -1,7 +1,6 @@
-# shinyHome
-# Real Estate Analytics and Forecasting
-# John James
-# Date: June 27, 2016
+# LangViz
+# Anupam Panwar
+# Date: September 29, 2016
 
 #ui.R
 

@@ -31,6 +31,7 @@ library(dplyr)
 library(stacksurveyr)
 library(radarchart)
 library(leaflet)
+library(shinyjs)
 
 ################################################################################
 #                             GLOBAL VARIABLES                                 #
