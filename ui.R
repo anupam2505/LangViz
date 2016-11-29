@@ -244,29 +244,30 @@ dashboardPage(skin = "green",
                                               fluidRow(
                                                 column(width = 3,
                                                        box(
-                                                         title = "How about connecting with experts near you ",
+                                                         title = "Significance of both language in different domains",
                                                          width = 12,
                                                          height = 530,
                                                          background = "orange",
                                                          solidHeader = FALSE,
                                                          collapsible = FALSE,
                                                          collapsed = FALSE,
-                                                         h5("And land you dream job !")
+                                                         h5("It will help you to pick a language !")
                                                        )# end of box
                                                 ),
                                                 column(width = 9,
+                                                       
                                                        box(
-                                                         title = paste("Find programmers around you !"),
+                                                         title = paste("Significance of languages"),
                                                          status = "primary",
                                                          width = 12,
                                                          height = 530,
                                                          solidHeader = FALSE,
                                                          collapsible = TRUE,
-                                                         leafletOutput("map") 
+                                                         chartJSRadarOutput("radar")
+                                                         
                                                        )
                                                 )
-                                              )
-                                              ,
+                                              ),
                                               fluidRow(
                                                 column(width = 3,
                                                        box(
@@ -293,33 +294,32 @@ dashboardPage(skin = "green",
                                                        )
                                                 )
                                               ) ,
+                                              
                                               fluidRow(
                                                 column(width = 3,
                                                        box(
-                                                         title = "Significance of both language in different domains",
+                                                         title = "How about connecting with experts near you ",
                                                          width = 12,
                                                          height = 530,
                                                          background = "orange",
                                                          solidHeader = FALSE,
                                                          collapsible = FALSE,
                                                          collapsed = FALSE,
-                                                         h5("It will help you to pick a language !")
+                                                         h5("And land you dream job !")
                                                        )# end of box
                                                 ),
                                                 column(width = 9,
-                                                       
                                                        box(
-                                                         title = paste("Significance of languages"),
+                                                         title = paste("Find programmers around you !"),
                                                          status = "primary",
                                                          width = 12,
                                                          height = 530,
                                                          solidHeader = FALSE,
                                                          collapsible = TRUE,
-                                                         chartJSRadarOutput("radar")
-                                                         
+                                                         leafletOutput("map") 
                                                        )
                                                 )
-                                              ) 
+                                              )
                                               
                                             )
                                      )

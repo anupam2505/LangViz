@@ -1,27 +1,16 @@
-"","occupation","average_salary"
-"1","Executive (VP of Eng., CTO, CIO, etc.)",103073.929961089
-"2","Engineering manager",101047.077922078
-"3","Enterprise level services developer",79855.623100304
-"4","DevOps",68731.9587628866
-"5","Product manager",68598.615916955
-"6","Growth hacker",67878.7878787879
-"7","Machine learning developer",67041.8006430868
-"8","Data scientist",66508.7463556851
-"9","Business intelligence or data warehousing expert",65660.9195402299
-"10","Developer with a statistics or mathematics background",65625.7594167679
-"11","Database administrator",60135.1351351351
-"12","Embedded application developer",59901.3452914798
-"13","Graphics programmer",56330.4721030043
-"14","Full-stack web developer",54838.2412263009
-"15","Analyst",54816.6023166023
-"16","Mobile developer - iOS",53759.2592592593
-"17","Desktop developer",53389.7707231041
-"18","Mobile developer - Windows Phone",53085.1063829787
-"19","Designer",50698.5294117647
-"20","Back-end web developer",49649.333826795
-"21","Quality Assurance",48049.853372434
-"22","System administrator",46562.5
-"23","Mobile developer",45781.7725752508
-"24","Front-end web developer",45744.3875541552
-"25","Mobile developer - Android",35305.2805280528
-"26","Student",13113.4480560867
+,Occupation,Average_Salary,Satisfaction,Languages
+1,Product manager,68598.61592,2.97,"mysql, sql, python"
+2,Machine learning developer,67041.80064,3.63,"python, R, java"
+3,Data scientist,66508.74636,3.89,"python, R, matlab"
+4,Business intelligence or data warehousing expert,65660.91954,3.05,"mysql, sql, html"
+5,Developer with a statistics or mathematics background,65625.75942,3.43,"java, R, python"
+6,Database administrator,60135.13514,3.06,"mysql, sql"
+7,Graphics programmer,56330.4721,3.15,"c++, java, c"
+8,Full-stack web developer,54838.24123,3.46,"java, javascript, html"
+9,Analyst,54816.60232,3.21,"java, python, R"
+10,Designer,50698.52941,3.52,"javacript, html, mysql"
+11,Back-end web developer,49649.33383,3.21,"java, c, c++"
+12,Quality Assurance,48049.85337,3.21,"java, c++, c"
+13,System administrator,46562.5,3.01,"sql, mysql, python"
+14,Mobile developer,45781.77258,3.18,"java, mysql, html"
+15,Front-end web developer,45744.38755,3.14,"html, javascipt, mysql"

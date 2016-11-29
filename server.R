@@ -145,7 +145,7 @@ shinyServer(function(input, output, session) {
   ### Salary Bases
   output$top10tfidf <- renderPlotly({
     salary_by_occupation = salary_by_occupation[order(salary_by_occupation$average_salary),]
-    p <- plot_ly(salary_by_occupation, y = ~average_salary, x= ~occupation, color = ~occupation, size = 0.1, type = 'scatter', mode = 'markers') %>%
+    p <- plot_ly(salary_by_occupation, y = ~Average_Salary, x= ~Occupation, text = ~Languages, color = ~Occupation, size = ~Satisfaction, type = 'scatter', mode = 'markers') %>%
       layout(
         xaxis = list(zeroline = TRUE,
                      showline = TRUE,
