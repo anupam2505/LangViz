@@ -121,7 +121,7 @@ shinyServer(function(input, output, session) {
   # Render total number of languages
   output$numStatesBox <- renderValueBox({
     valueBox(
-      paste0(10), paste("Languages"), 
+      paste0(9), paste("Languages"), 
       icon = icon("keyboard-o"), color = "green"
     )
   })
@@ -129,7 +129,7 @@ shinyServer(function(input, output, session) {
   # Render total number of questions
   output$numCountiesBox <- renderValueBox({
     valueBox(
-      paste0(125798), paste("Questions"), 
+      paste0(4594711), paste("Questions"), 
       icon = icon("question"), color = "yellow"
     )
   })
@@ -137,7 +137,7 @@ shinyServer(function(input, output, session) {
   # Render total number of answers
   output$numCitiesBox <- renderValueBox({
     valueBox(
-      paste0(153214), paste("Answers"), 
+      paste0(8095024), paste("Answers"), 
       icon = icon("comments"), color = "red"
     )
   })
