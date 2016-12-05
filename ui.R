@@ -61,7 +61,7 @@ dashboardPage(skin = "green",
                             fluidRow(
                               column(width = 12,
                                      box(
-                                       title = "Welcome to Language Analytics ! Explore best career paths based on trending technologies and languages. ",
+                                       title = "Welcome to Compar-a-lang ! Explore the trending technologies and languages in computer science. ",
                                        width = 12,
                                        height = 50,
                                        background = "green",
@@ -124,7 +124,7 @@ dashboardPage(skin = "green",
                                      fluidRow(
                                        column(width = 3,
                                               box(
-                                                title = "Except language, technologies has high correlation with high earnings.",
+                                                title = "Technologies has high correlation with high earnings.",
                                                 width = 12,
                                                 height = 530,
                                                 background = "orange",
