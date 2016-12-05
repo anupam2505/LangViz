@@ -5,7 +5,7 @@
 #ui.R
 
 dashboardPage(skin = "green",
-              dashboardHeader(title = "Language Analytics"),
+              dashboardHeader(title = "Compar-a-lang"),
               dashboardSidebar(
                 sidebarMenu(id = "sbm",
                             menuItem("Dashboard", tabName = "dashboard", icon = icon("dashboard")),
@@ -30,7 +30,7 @@ dashboardPage(skin = "green",
 #                                      menuSubItem("HTML", icon = icon("coffee"),tabName = "html"),
 #                                      menuSubItem("Matlab", icon = icon("coffee"),tabName = "matlab")
 #                                      ),
-                            menuItem("Comparitive Analyzer", tabName = "Comparitive", icon = icon("question-circle"),
+                            menuItem("Comparative Analyser", tabName = "Comparitive", icon = icon("question-circle"),
                                      menuSubItem("Compare All", icon = icon("user"),tabName = "compareall"),
                                      menuSubItem("Compare Two", icon = icon("coffee"),tabName = "comparetwo")
                                      # menuSubItem("Dashboard", icon = icon("dashboard"),tabName = "helpDashboard"),
@@ -88,20 +88,20 @@ dashboardPage(skin = "green",
                                 fluidRow(
                                 column(width = 3,
                                      box(
-                                       title = "Best professions of 2016",
+                                       title = "Before going somewhere lets first find What job pays the most.",
                                        width = 12,
                                        height = 530,
                                        background = "orange",
-                                       h5("Before going somewhere lets first find what are earnings of the users based on their profession"),
+                                       h5("Check out the professions, corresponding salaries and related languages. 
+                                          The size of the bubble represents the job satisfaction."),
                                        h5(
-                                         paste("Seems like Software Development is having very high demand. Awesome ! I want to earn a lot of money.
-                                               what technology I should in software development ? Okay.. Scroll down and know more")
+                                         paste("Awesome ! I want to earn a lot of money. What technology I should in software development ? Okay.. Scroll down and know more")
                                        )
                                          )# end of box
                                        ),# end of column
                               column(width = 9,
                                      box(
-                                       title = "Best Earning Profession",
+                                       title = "Best earning and satisfactory professions",
                                        status = "success",
                                        width = 12,
                                        height = 530,
@@ -124,7 +124,7 @@ dashboardPage(skin = "green",
                                      fluidRow(
                                        column(width = 3,
                                               box(
-                                                title = "Let's talk about the technologies that are in high demand in 2016",
+                                                title = "Except language, technologies has high correlation with high earnings.",
                                                 width = 12,
                                                 height = 530,
                                                 background = "orange",
@@ -174,17 +174,17 @@ dashboardPage(skin = "green",
                                                 background = "orange",
                                                 solidHeader = FALSE,
                                                 collapsed = FALSE,
-                                                h5("Relations between different languages.")
+                                                h5("Start exploring the various topics by hovering on the bubbles.")
                                               )# end of box
                                        ),# end of column
                                        column(width = 9,
                                               box(
-                                                title = "Graphical Represention of top related word with Each Language",
+                                                title = "Graphical represention of related topics of each language",
                                                 status = "success",
                                                 width = 12,
                                                 height = 700,
                                                 solidHeader = FALSE,
-                                                htmlOutput('networkPlot')
+                                                forceNetworkOutput('networkPlot')
                                                 #showOutput("top10StatesTS", "nvd3")
                                               ) 
                                        )#end of column
@@ -194,7 +194,7 @@ dashboardPage(skin = "green",
                             
                             column(width = 12,
                                    box(
-                                     title = "Similarity between two languages",
+                                     title = "Context based similarity (word2vec) between two languages",
                                      status = "success",
                                      width = 12,
                                      solidHeader = TRUE,
@@ -202,7 +202,7 @@ dashboardPage(skin = "green",
                                      fluidRow(
                                        column(width = 3,
                                               box(
-                                                title = "Lets check similarity between two languages",
+                                                title = "Hover to explore the similarity and click to see why.",
                                                 width = 12,
                                                 height = 500,
                                                 background = "orange",
@@ -213,7 +213,7 @@ dashboardPage(skin = "green",
                                        ),
                                        column(width = 9,
                                               box(
-                                                title = "Heat Map",
+                                                title = "Word2vec similarity matrix",
                                                 status = "success",
                                                 width = 12,
                                                 height = 500,
@@ -227,7 +227,7 @@ dashboardPage(skin = "green",
                                      fluidRow(
                                        column(width = 3,
                                               box(
-                                                title = "Related Terms",
+                                                title = "Shows the top topics which bind the two together",
                                                 width = 12,
                                                 height = 700,
                                                 background = "orange",
@@ -239,7 +239,7 @@ dashboardPage(skin = "green",
                                        ),
                                        column(width = 9,
                                               box(
-                                                title = "Bubble Chart",
+                                                title = "Bubble chart corresponding to cell selected in similarity matrix ",
                                                 status = "success",
                                                 width = 12,
                                                 height = 700,
@@ -293,13 +293,13 @@ dashboardPage(skin = "green",
                                                          solidHeader = FALSE,
                                                          collapsible = FALSE,
                                                          collapsed = FALSE,
-                                                         h5("It will help you to pick a language !")
+                                                         h5("Pick the language that fits your usecase !")
                                                        )# end of box
                                                 ),
                                                 column(width = 9,
                                                        
                                                        box(
-                                                         title = paste("Significance of languages"),
+                                                         title = paste("Domain Radar"),
                                                          status = "success",
                                                          width = 12,
                                                          height = 530,
@@ -320,7 +320,7 @@ dashboardPage(skin = "green",
                                                          solidHeader = FALSE,
                                                          collapsible = FALSE,
                                                          collapsed = FALSE,
-                                                         h5("Pick the popular one ;) !")
+                                                         h5("Higher the posts implies higher community support/popularity. Pick the popular one ;) !")
                                                        )# end of box
                                                 ),
                                                 column(width = 9,

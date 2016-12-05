@@ -32,6 +32,7 @@ library(stacksurveyr)
 library(radarchart)
 library(leaflet)
 library(shinyjs)
+library(networkD3)
 
 ################################################################################
 #                             GLOBAL VARIABLES                                 #
@@ -63,8 +64,8 @@ salary_by_occupation <- read.csv("salary_by_occupation.csv")
 language_domain <- read.csv("language_domain.csv")
 ## Map
 mapdata <- read.csv("aggregated_mapdata.csv")
-nms <- names(sim.mat)
-sim <- as.matrix(sim.mat)
+nms <- names(simmat)
+sim <- as.matrix(simmat)
 
 # Read model data
 modelData <- read.xlsx("models.xlsx", sheetIndex = 1, header = TRUE)

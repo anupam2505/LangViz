@@ -82,7 +82,7 @@ shinyServer(function(input, output, session) {
   # Get lang2 win data
   screencountry2winData <-eventReactive(input$query1, {
     in2 = input$countryinput2
-    matchesCountry2 = lang[lang$language=="c",]
+    matchesCountry2 = lang[lang$language==in2,]
     count2 = aggregate(matchesCountry2$answer_count, by=list(Category=matchesCountry2$year), FUN=sum)
     
     
@@ -195,9 +195,9 @@ shinyServer(function(input, output, session) {
   
   
   ## network plot
-  output$networkPlot <- renderPrint({
+  output$networkPlot <- renderForceNetwork({
     links <- tfidf1
-    links$count = rep(10,length(links))
+    #links$count = rep(10,length(links))
     nodes = data.frame("name" = unique(links[,1]))
     nodesnew = nodes
     nodes = rbind(nodes, data.frame("name" = links[,2]))
@@ -206,17 +206,23 @@ shinyServer(function(input, output, session) {
     links$target.index = match(links$tag, nodes$name)-1
     
     links$group = links$source.index
-    nodes1 = cbind(nodesnew,c(0,1,2,3,4,5,6,7,8,9) )
-    colnames(nodes1) <- c( "name", "group")
-    nodes2 = as.data.frame(cbind(links$tag, links$group))
-    colnames(nodes2) <- c( "name", "group")
+    nodes1 = cbind(nodesnew,c(0,1,2,3,4,5,6,7,8,9), c(100,100,100,100,100, 100,100,100,100,100) )
+    colnames(nodes1) <- c( "name", "group", "nodesize")
+    nodes2 = as.data.frame(cbind(links$tag, links$group, rep(5,length(links) )))
+    colnames(nodes2) <-  c( "name", "group", "nodesize")
     nodes2 = rbind(nodes1, nodes2)
-    colnames(nodes2) <- c( "name", "group")
+    colnames(nodes2) <-  c( "name", "group", "nodesize")
     nodes2 = as.data.frame(nodes2)
-    d3ForceNetwork(Links = links, Nodes = nodes2,
-                        Source = "source.index", Target = "target.index",
-                        width = 700, height = 600, Group = "group",
-                        NodeID = "name",  zoom = TRUE, parentElement = '#networkPlot',opacity = 0.9)
+    
+    forceNetwork(Links = links, Nodes = nodes2,
+                   Source = "source.index", Target = "target.index",fontSize = 20,
+                   Group = "group", Value = "count1",Nodesize = "nodesize",
+                   NodeID = "name",  zoom = TRUE,opacity = 0.9)
+    
+      # d3ForceNetwork(Links = links, Nodes = nodes2,
+      #                     Source = "source.index", Target = "target.index",
+      #                     width = 700, height = 600, Group = "group", Value = "count1",
+      #                     NodeID = "name",  zoom = TRUE, parentElement = '#networkPlot',opacity = 0.9)
     
   })
   
