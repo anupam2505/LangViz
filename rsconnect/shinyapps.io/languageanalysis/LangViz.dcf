@@ -3,8 +3,8 @@ title:
 account: languageanalysis
 server: shinyapps.io
 appId: 128658
-bundleId: 635922
+bundleId: 635954
 url: https://languageanalysis.shinyapps.io/LangViz/
-when: 1480913202.65397
+when: 1480916435.16262
 asMultiple: FALSE
 asStatic: FALSE

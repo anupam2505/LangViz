@@ -145,15 +145,15 @@ shinyServer(function(input, output, session) {
   # Render total number of users
   output$numZipsBox <- renderValueBox({
     valueBox(
-      paste0(8500), paste("Users"), 
+      paste0(56033), paste("Users"), 
       icon = icon("users"), color = "yellow"
     )
   })
   
   ### Salary Bases
   output$top10tfidf <- renderPlotly({
-    salary_by_occupation = salary_by_occupation[order(salary_by_occupation$Average_Salary),]
-    p <- plot_ly(salary_by_occupation, y = ~Average_Salary, x= ~Occupation, text = ~Languages, color = ~Occupation, size = ~Satisfaction, type = 'scatter', mode = 'markers') %>%
+    salary_by_occupation = salary_by_occupation[order(salary_by_occupation$Average_Salary_per_annum),]
+    p <- plot_ly(salary_by_occupation, y = ~Average_Salary_per_annum, x= ~Occupation, text = ~Languages, color = ~Occupation, size = ~Satisfaction, type = 'scatter', mode = 'markers') %>%
       layout(
         xaxis = list(zeroline = TRUE,
                      showline = TRUE,
